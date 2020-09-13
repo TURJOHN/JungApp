@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.MenuItem;
 import android.webkit.WebResourceResponse;
@@ -38,7 +39,19 @@ public class PersonalityTestActivity extends AppCompatActivity {
         webSettings.setAllowFileAccessFromFileURLs(false);
         webSettings.setAllowContentAccess(false);
         webview.loadUrl("https://www.16personalities.com/free-personality-test");
-        webview.setWebViewClient(new WebViewClient());
+        webview.setWebViewClient(new WebViewClient() {
+            public void onPageFinished(WebView view, String url) {
+                url = webview.getUrl();
+                if(!url.equals("https://www.16personalities.com/free-personality-test"))
+                    showResultTest(url);
+            }
+        });
+    }
+
+    public void showResultTest(String url){
+        Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra("TestResult", url);
+        startActivity(intent);
     }
 
     @Override
