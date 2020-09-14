@@ -1,7 +1,6 @@
 package com.example.jungapp;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -9,10 +8,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
-import android.util.Log;
 import android.view.MenuItem;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -26,7 +22,7 @@ public class PersonalityTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personality_test);
 
-        Toolbar PTAToolbar = findViewById(R.id.toolbar);
+        Toolbar PTAToolbar = findViewById(R.id.toolbarTest);
         setSupportActionBar(PTAToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

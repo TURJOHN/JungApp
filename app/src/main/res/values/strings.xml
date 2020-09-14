@@ -3,12 +3,26 @@
     <string name="startButton">Take the Test</string>
     <string name="infoButton">Info</string>
     <string name="title_activity_personality_test">PersonalityTestActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="title_activity_result">ResultActivity</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="intj">Sosna Czarna - Architekt</string>
+    <string name="intp">Daglezja Zielona - Logik</string>
+    <string name="entj">Jesion - Dowódca</string>
+    <string name="entp">Bambus - Dyskutant</string>
+
+    <string name="infj">Świerk - Rzecznik</string>
+    <string name="infp">Jodła Pospolita - Mediator</string>
+    <string name="enfj">Buk - Protogonista</string>
+    <string name="enfp">Topola Czarna - Konsul</string>
+
+    <string name="istj">Sosna Wejmutka - Logistyk</string>
+    <string name="isfj">Sekwoja Wiecznie Zielona - Obrońca</string>
+    <string name="estj">Wiąz Górski - Kierownik</string>
+    <string name="esfj">"???"</string>
+
+    <string name="istp">Sosna Zwyczajna - Wirtuoz</string>
+    <string name="isfp">Modrzew Europejski - Poszukiwacz przygód</string>
+    <string name="estp">Klon Zwyczajny - Przedsiębiorca</string>
+    <string name="esfp">Klon Jawor - Animator</string>
+
 </resources>
