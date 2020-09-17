@@ -1,28 +1,270 @@
 <resources>
-    <string name="app_name">JungApp</string>
-    <string name="startButton">Take the Test</string>
-    <string name="infoButton">Info</string>
+    <string name="app_name">PersonalityForestApp</string>
     <string name="title_activity_personality_test">PersonalityTestActivity</string>
     <string name="title_activity_result">ResultActivity</string>
+    <string name="startButton">Rozwiąż Test</string>
+    <string name="infoButton">Info</string>
+    <string name="needs">Zapotrzebowania</string>
+
+    <string name="wind_resist">Odporność na wiatr</string>
+    <string name="fire_resist">Odporność na ognień</string>
+    <string name="pollution_resist">Odporność na zanieczyszczena</string>
+    <string name="cold_resist">Odporność na przymrozki</string>
+    <string name="nutri_need">Zapotrzebowanie na składniki odrzywcze</string>
+    <string name="water_need">Zapotrzebowanie na wodę</string>
+    <string name="warmth_need">Zapotrzebowanie na ciepło</string>
+    <string name="light_need">Zapotrzebowanie na światło</string>
+    <string name="special_ability">Zdolność specjalna</string>
+    <string name="resistances">Odporności</string>
+    <string name="tree_avatar_desc">Twoje drzewo</string>
+
+    <!--To ma tak zostać-->
+    <string name="desc_temp">DescTEMP</string>
+    <string name="stat_temp">StatTEMP</string>
 
     <string name="intj">Sosna Czarna - Architekt</string>
+    <string-array name="intj_stats">
+        <item>-2</item> <!--swiatlo-->
+        <item>-2</item> <!--cieplo-->
+        <item>+2</item> <!--woda-->
+        <item>+2</item> <!--nutri-->
+        <item>+2</item> <!--zimno-->
+        <item>+2</item> <!--pollu-->
+        <item>-3</item> <!--ognien-->
+        <item>+1</item> <!--wiatr-->
+        <item>I am invincible - raz na sezon może przerzucić test dowolnej odporności.</item> <!--special-->
+    </string-array>
+
     <string name="intp">Daglezja Zielona - Logik</string>
+    <string-array name="intp_stats">
+        <item>0</item> <!--swiatlo-->
+        <item>0</item> <!--cieplo-->
+        <item>0</item> <!--woda-->
+        <item>0</item> <!--nutri-->
+        <item>0</item> <!--zimno-->
+        <item>-2</item> <!--pollu-->
+        <item>-2</item> <!--ognien-->
+        <item>0</item> <!--wiatr-->
+        <item>Sky is the limit - raz na sezon/rok ma dodatkowo +1/+2 energii.</item> <!--special-->
+    </string-array>
+
     <string name="entj">Jesion - Dowódca</string>
+    <string-array name="entj_stats">
+        <item>-1</item> <!--swiatlo-->
+        <item>0</item> <!--cieplo-->
+        <item>-2</item> <!--woda-->
+        <item>-2</item> <!--nutri-->
+        <item>-2</item> <!--zimno-->
+        <item>-2</item> <!--pollu-->
+        <item>+2</item> <!--ognien-->
+        <item>+2</item> <!--wiatr-->
+        <item>Wiatry mi nie straszne - Jesion może przerzucić dowolny test odporności na wiatr, ale drugi test jest ostateczny.</item> <!--special-->
+    </string-array>
+
     <string name="entp">Bambus - Dyskutant</string>
+    <string-array name="entp_stats">
+        <item>-2</item> <!--swiatlo-->
+        <item>0</item> <!--cieplo-->
+        <item>-2</item> <!--woda-->
+        <item>-2</item> <!--nutri-->
+        <item>-1</item> <!--zimno-->
+        <item>0</item> <!--pollu-->
+        <item>+3</item> <!--ognien-->
+        <item>+3</item> <!--wiatr-->
+        <item>Look at me go! – Gdy Bambus zbierze x energii może odpalić unikalny ruch, który powoduje że dziennie bambus rośnie około metra, co w sezonie daje około 40–60m!</item> <!--special-->
+    </string-array>
 
     <string name="infj">Świerk - Rzecznik</string>
+    <string-array name="infj_stats">
+        <item>0</item> <!--swiatlo-->
+        <item>+2</item> <!--cieplo-->
+        <item>-2</item> <!--woda-->
+        <item>0</item> <!--nutri-->
+        <item>0</item> <!--zimno-->
+        <item>-2</item> <!--pollu-->
+        <item>-2</item> <!--ognien-->
+        <item>0</item> <!--wiatr-->
+        <item>Survivalowiec - może przerzucić dowolny rzut podczas wiosny. Drugi rzut jest ostateczny.</item> <!--special-->
+    </string-array>
+
     <string name="infp">Jodła Pospolita - Mediator</string>
+    <string-array name="infp_stats">
+        <item>+2</item> <!--swiatlo-->
+        <item>-2</item> <!--cieplo-->
+        <item>0</item> <!--woda-->
+        <item>0</item> <!--nutri-->
+        <item>-2</item> <!--zimno-->
+        <item>-2</item> <!--pollu-->
+        <item>-2</item> <!--ognien-->
+        <item>+1</item> <!--wiatr-->
+        <item>Very Important Tree (VIT) - jako że jodła jest zagrożona wyginięciem, łyse małpy (aka ludzie) zwykle nie będą działać na szkodę jodle a nawet będą starali się zapewnić jej sprzyjające warunki.</item> <!--special-->
+    </string-array>
+
     <string name="enfj">Buk - Protogonista</string>
+    <string-array name="enfj_stats">
+        <item>+2</item> <!--swiatlo-->
+        <item>-2</item> <!--cieplo-->
+        <item>0</item> <!--woda-->
+        <item>0</item> <!--nutri-->
+        <item>-2</item> <!--zimno-->
+        <item>+3</item> <!--pollu-->
+        <item>+2</item> <!--ognien-->
+        <item>-2</item> <!--wiatr-->
+        <item>Płuca lasu - +1 do odporności na zanieczyszczenia, dodatkowo każde sąsiadujące drzewo raz w sezonie może przerzucić jeden test pozyskania energii.</item> <!--special-->
+    </string-array>
+
     <string name="enfp">Topola Czarna - Konsul</string>
+    <string-array name="enfp_stats">
+        <item>-2</item> <!--swiatlo-->
+        <item>0</item> <!--cieplo-->
+        <item>-2</item> <!--woda-->
+        <item>-2</item> <!--nutri-->
+        <item>+2</item> <!--zimno-->
+        <item>-2</item> <!--pollu-->
+        <item>+2</item> <!--ognien-->
+        <item>-2</item> <!--wiatr-->
+        <item>Pierwsza na starcie - +1 do rzutów na wzrost.</item> <!--special-->
+    </string-array>
 
     <string name="istj">Sosna Wejmutka - Logistyk</string>
+    <string-array name="istj_stats">
+        <item>-1</item> <!--swiatlo-->
+        <item>0</item> <!--cieplo-->
+        <item>0</item> <!--woda-->
+        <item>-2</item> <!--nutri-->
+        <item>0</item> <!--zimno-->
+        <item>0</item> <!--pollu-->
+        <item>-3</item> <!--ognien-->
+        <item>+1</item> <!--wiatr-->
+        <item>Wiewiórka szara is my friend - +3 do rozsiewania nasion jeżeli w pobliżu bytują wiewiórki szare.</item> <!--special-->
+    </string-array>
+
     <string name="isfj">Sekwoja Wiecznie Zielona - Obrońca</string>
+    <string-array name="isfj_stats">
+        <item>-2</item> <!--swiatlo-->
+        <item>-2</item> <!--cieplo-->
+        <item>-2</item> <!--woda-->
+        <item>-2</item> <!--nutri-->
+        <item>-2</item> <!--zimno-->
+        <item>0</item> <!--pollu-->
+        <item>0</item> <!--ognien-->
+        <item>+3</item> <!--wiatr-->
+        <item>Chyba coś mnie smyra, meh - gdy sekwoja osiąga pewien wiek i zarazem wielkość, duża ilość zdarzeń nie ma na nią wpływu. Zwyczajnie są za mełe żeby jakoś wpłynąć na ogroną sekwoje.</item> <!--special-->
+    </string-array>
+
     <string name="estj">Wiąz Górski - Kierownik</string>
-    <string name="esfj">"???"</string>
+    <string-array name="estj_stats">
+        <item>0</item> <!--swiatlo-->
+        <item>0</item> <!--cieplo-->
+        <item>0</item> <!--woda-->
+        <item>-2</item> <!--nutri-->
+        <item>+2</item> <!--zimno-->
+        <item>0</item> <!--pollu-->
+        <item>+3</item> <!--ognien-->
+        <item>0</item> <!--wiatr-->
+        <item>I am tough - wiąz ma ciężkie i gęste drewno. Daje mu to +1 do odporności na ogień oraz +1 do odporności na obrażenia mechaniczne.</item> <!--special-->
+    </string-array>
+
+    <string name="esfj">"Brzoza Brodawkowata - Działacz"</string>
+    <string-array name="esfj_stats">
+        <item>-2</item> <!--swiatlo-->
+        <item>+2</item> <!--cieplo-->
+        <item>+2</item> <!--woda-->
+        <item>+2</item> <!--nutri-->
+        <item>-2</item> <!--zimno-->
+        <item>-2</item> <!--pollu-->
+        <item>0</item> <!--ognien-->
+        <item>+1</item> <!--wiatr-->
+        <item>Pionier - +2 do rzutów na rozmnarzanie, +1 do testów na odporność przez pierwszy rok.</item> <!--special-->
+    </string-array>
 
     <string name="istp">Sosna Zwyczajna - Wirtuoz</string>
-    <string name="isfp">Modrzew Europejski - Poszukiwacz przygód</string>
-    <string name="estp">Klon Zwyczajny - Przedsiębiorca</string>
-    <string name="esfp">Klon Jawor - Animator</string>
+    <string-array name="istp_stats">
+        <item>-2</item> <!--swiatlo-->
+        <item>+2</item> <!--cieplo-->
+        <item>+2</item> <!--woda-->
+        <item>+2</item> <!--nutri-->
+        <item>-2</item> <!--zimno-->
+        <item>+2</item> <!--pollu-->
+        <item>-3</item> <!--ognien-->
+        <item>+2</item> <!--wiatr-->
+        <item>Szybko zarasta po pożarach - +2 do rzutu na nowe sadzonki.</item> <!--special-->
+    </string-array>
 
+    <string name="isfp">Modrzew Europejski - Poszukiwacz przygód</string>
+    <string-array name="isfp_stats">
+        <item>-2</item> <!--swiatlo-->
+        <item>-2</item> <!--cieplo-->
+        <item>0</item> <!--woda-->
+        <item>+2</item> <!--nutri-->
+        <item>0</item> <!--zimno-->
+        <item>-1</item> <!--pollu-->
+        <item>-2</item> <!--ognien-->
+        <item>+2</item> <!--wiatr-->
+        <item>Zrzuca igły na zimę - +2 do zapotrzebowania na światło w zimę.</item> <!--special-->
+    </string-array>
+
+    <string name="estp">Klon Zwyczajny - Przedsiębiorca</string>
+    <string-array name="estp_stats">
+        <item>0</item> <!--swiatlo-->
+        <item>0</item> <!--cieplo-->
+        <item>0</item> <!--woda-->
+        <item>0</item> <!--nutri-->
+        <item>0</item> <!--zimno-->
+        <item>0</item> <!--pollu-->
+        <item>+2</item> <!--ognien-->
+        <item>+1</item> <!--wiatr-->
+        <item>Jack of all trades - dwa razy na sezon klon może wybrać test do którego dostanie modyfikator +2.</item> <!--special-->
+    </string-array>
+
+    <string name="esfp">Klon Jawor - Animator</string>
+    <string-array name="esfp_stats">
+        <item>0</item> <!--swiatlo-->
+        <item>-2</item> <!--cieplo-->
+        <item>0</item> <!--woda-->
+        <item>-2</item> <!--nutri-->
+        <item>0</item> <!--zimno-->
+        <item>0</item> <!--pollu-->
+        <item>+2</item> <!--ognien-->
+        <item>+1</item> <!--wiatr-->
+        <item>Jack of all trades - dwa razy na sezon klon może wybrać test do którego dostanie modyfikator +2.</item> <!--special-->
+    </string-array>
+
+    <string-array name="tree_names">
+        <item>@string/intj</item>
+        <item>@string/intp</item>
+        <item>@string/entj</item>
+        <item>@string/entp</item>
+        <item>@string/infj</item>
+        <item>@string/infp</item>
+        <item>@string/enfj</item>
+        <item>@string/enfp</item>
+        <item>@string/istj</item>
+        <item>@string/istp</item>
+        <item>@string/estj</item>
+        <item>@string/estp</item>
+        <item>@string/isfj</item>
+        <item>@string/isfp</item>
+        <item>@string/esfj</item>
+        <item>@string/esfp</item>
+    </string-array>
+
+    <string-array name="personalities">
+        <item>intj</item>
+        <item>intp</item>
+        <item>entj</item>
+        <item>entp</item>
+        <item>infj</item>
+        <item>infp</item>
+        <item>enfj</item>
+        <item>enfp</item>
+        <item>istj</item>
+        <item>istp</item>
+        <item>estj</item>
+        <item>estp</item>
+        <item>isfj</item>
+        <item>isfp</item>
+        <item>esfj</item>
+        <item>esfp</item>
+    </string-array>
 </resources>

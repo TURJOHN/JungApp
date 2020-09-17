@@ -1,6 +1,7 @@
 package com.example.jungapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -8,13 +9,17 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class PersonalityTestActivity extends AppCompatActivity {
     private WebView webview;
+    private String[] personalities = {"intj", "intp", "entj", "entp", "infj", "infp", "enfj", "enfp", "istj", "isfj", "estj", "esfj", "istp", "isfp", "estp", "esfp"};
+    private String testURL = "https://www.16personalities.com/pl/darmowy-test-osobowosci";
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -22,11 +27,13 @@ public class PersonalityTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personality_test);
 
+        final Toast wrong_url = Toast.makeText(getApplicationContext(), "Rozwiąż test!", Toast.LENGTH_SHORT);
+
         Toolbar PTAToolbar = findViewById(R.id.toolbarTest);
         setSupportActionBar(PTAToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Take the Test on website:");
+        getSupportActionBar().setTitle("Rozwiąż test:");
 
         webview = findViewById(R.id.webview);
         WebSettings webSettings = webview.getSettings();
@@ -34,12 +41,25 @@ public class PersonalityTestActivity extends AppCompatActivity {
         webSettings.setAllowFileAccess(false);
         webSettings.setAllowFileAccessFromFileURLs(false);
         webSettings.setAllowContentAccess(false);
-        webview.loadUrl("https://www.16personalities.com/free-personality-test");
+        if (savedInstanceState == null) webview.loadUrl(testURL);
         webview.setWebViewClient(new WebViewClient() {
-            public void onPageFinished(WebView view, String url) {
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+
                 url = webview.getUrl();
-                if(!url.equals("https://www.16personalities.com/free-personality-test"))
-                    showResultTest(url);
+                boolean found = false;
+                if(!url.equals(testURL)) {
+
+                    for(String personality : personalities) {
+                        found = url.equals("https://www.16personalities.com/pl/" + "osobowosc-" + personality);
+                        if(found) {
+                            break;
+                        }
+                    }
+                    if(found) showResultTest(url); else {
+                        webview.goBack();
+                        wrong_url.show();
+                    }
+                }
             }
         });
     }
@@ -52,16 +72,14 @@ public class PersonalityTestActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(PersonalityTestActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(PersonalityTestActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -71,5 +89,19 @@ public class PersonalityTestActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState )
+    {
+        super.onSaveInstanceState(outState);
+        webview.saveState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        super.onRestoreInstanceState(savedInstanceState);
+        webview.restoreState(savedInstanceState);
     }
 }
