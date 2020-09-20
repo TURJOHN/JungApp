@@ -16,12 +16,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 public class PersonalityTestActivity extends AppCompatActivity {
     private WebView webview;
     private String[] personalities = {"intj", "intp", "entj", "entp", "infj", "infp", "enfj", "enfp", "istj", "isfj", "estj", "esfj", "istp", "isfp", "estp", "esfp"};
     private String testURL = "https://www.16personalities.com/pl/darmowy-test-osobowosci";
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,7 @@ public class PersonalityTestActivity extends AppCompatActivity {
 
         Toolbar PTAToolbar = findViewById(R.id.toolbarTest);
         setSupportActionBar(PTAToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Rozwiąż test:");
 

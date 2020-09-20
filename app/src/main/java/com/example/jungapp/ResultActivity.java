@@ -12,12 +12,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 public class ResultActivity extends AppCompatActivity {
 
     private EditText[] PersonalityStatsTextViews = new EditText[10];
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +28,9 @@ public class ResultActivity extends AppCompatActivity {
 
         Toolbar RToolbar = findViewById(R.id.toolbarResult);
         setSupportActionBar(RToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Test results:");
+        getSupportActionBar().setTitle("Wynik testu:");
 
         String TestResult = getIntent().getStringExtra("TestResult");
         assert TestResult != null;
@@ -37,6 +40,9 @@ public class ResultActivity extends AppCompatActivity {
         TestResultTextView.setText(personality);
 
         int temp;
+        int resistance;
+        int resistancesSum = 0;
+        int min = 1;
         ImageView image = findViewById(R.id.TreeAvatar);
         temp = getResources().getIdentifier(testResultPersonality, "drawable", getPackageName());
         image.setImageResource(temp);
@@ -44,13 +50,45 @@ public class ResultActivity extends AppCompatActivity {
         String[] personalityStats = getStringArrayResourceByName(testResultPersonality);
 
         String[] id = new String[]{"LightNeed", "WarmthNeed", "WaterNeed", "NutriNeed",
-                "ColdResist", "PolutionResist", "FireResist", "WindResist", "AbilitySpecialDESC"};
+                "ColdResist", "PolutionResist", "FireResist", "WindResist", "VigorStat", "AbilitySpecialDESC"};
         for(int i = 0; i< id.length; i++) {
+            if(i>3 && i<8) {
+                try {
+                    resistance = Integer.parseInt(personalityStats[i]);
+                    resistancesSum = resistancesSum + resistance;
+                } catch (NumberFormatException e) {
+                    resistancesSum = resistancesSum + (Integer.parseInt(personalityStats[i].substring(personalityStats[i].length() - 1)));
+                }
+            }
             temp = getResources().getIdentifier(id[i], "id", getPackageName());
             PersonalityStatsTextViews[i] = findViewById(temp);
+            if(personalityStats[i].equals("lisciaste")) {
+                personalityStats[i] = VigorStat("lisc_max", resistancesSum, min);
+            }
+            if(personalityStats[i].equals("iglaste")) {
+                personalityStats[i] = VigorStat("igla_max", resistancesSum, min);
+            }
             PersonalityStatsTextViews[i].setText(personalityStats[i]);
         }
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private String VigorStat(String name, int vigor, int min) {
+        int max = Integer.parseInt(getStringResourceByName(name));
+        vigor = vigor + ThreadLocalRandom.current().nextInt(min, max + 1);
+        return Integer.toString(vigor);
+    }
+
+    private String getStringResourceByName(String name) {
+        String packageName = getPackageName();
+        int resId = getResources().getIdentifier(name, "string", packageName);
+        return getString(resId);
+    }
+
+    private String[] getStringArrayResourceByName(String name) {
+        String packageName = getPackageName();
+        int resId = getResources().getIdentifier(name, "array", packageName);
+        return getResources().getStringArray(resId);
     }
 
     @Override
@@ -63,19 +101,6 @@ public class ResultActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-
-    private String getStringResourceByName(String name) {
-        String packageName = getPackageName();
-        int resId = getResources().getIdentifier(name, "string", packageName);
-        return getString(resId);
-    }
-
-    private String[] getStringArrayResourceByName(String name) {
-        String packageName = getPackageName();
-        int resId = getResources().getIdentifier(name, "array", packageName);
-        return getResources().getStringArray(resId);
     }
 
     @Override

@@ -18,12 +18,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class InfoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String[] personalities;
     private EditText[] PersonalityStatsTextViews = new EditText[10];
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,7 @@ public class InfoActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Toolbar IToolbar = findViewById(R.id.toolbarTest);
         setSupportActionBar(IToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Możliwe wyniki:");
 
@@ -57,6 +60,7 @@ public class InfoActivity extends AppCompatActivity implements AdapterView.OnIte
         return super.onOptionsItemSelected(item);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String personality = personalities[position];
@@ -66,24 +70,51 @@ public class InfoActivity extends AppCompatActivity implements AdapterView.OnIte
         TestResultTextView.setText(personalityName);
 
         int temp;
+        int resistance;
+        int resistancesSum = 0;
+        int min = 1;
         ImageView image = findViewById(R.id.TreeAvatar);
         temp = getResources().getIdentifier(personality, "drawable", getPackageName());
         image.setImageResource(temp);
         personality = personality + "_stats";
         String[] personalityStats = getStringArrayResourceByName(personality);
-
         String[] idPersonality = new String[]{"LightNeed", "WarmthNeed", "WaterNeed", "NutriNeed",
-                "ColdResist", "PolutionResist", "FireResist", "WindResist", "AbilitySpecialDESC"};
+                "ColdResist", "PolutionResist", "FireResist", "WindResist", "VigorStat", "AbilitySpecialDESC"};
         for(int i = 0; i< idPersonality.length; i++) {
+            if(i>3 && i<8) {
+                try {
+                    resistance = Integer.parseInt(personalityStats[i]);
+                    resistancesSum = resistancesSum + resistance;
+                } catch (NumberFormatException e) {
+                    resistancesSum = resistancesSum + (Integer.parseInt(personalityStats[i].substring(personalityStats[i].length() - 1)));
+                }
+            }
             temp = getResources().getIdentifier(idPersonality[i], "id", getPackageName());
             PersonalityStatsTextViews[i] = findViewById(temp);
+            if(personalityStats[i].equals("lisciaste")) {
+                personalityStats[i] = VigorStat("lisc_max", resistancesSum, min);
+            }
+            if(personalityStats[i].equals("iglaste")) {
+                personalityStats[i] = VigorStat("igla_max", resistancesSum, min);
+            }
             PersonalityStatsTextViews[i].setText(personalityStats[i]);
         }
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    public void onNothingSelected(AdapterView<?> parent) { }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private String VigorStat(String name, int vigor, int min) {
+        int max = Integer.parseInt(getStringResourceByName(name));
+        vigor = vigor + ThreadLocalRandom.current().nextInt(min, max + 1);
+        return Integer.toString(vigor);
+    }
+
+    private String getStringResourceByName(String name) {
+        String packageName = getPackageName();
+        int resId = getResources().getIdentifier(name, "string", packageName);
+        return getString(resId);
     }
 
     private String[] getStringArrayResourceByName(String name) {
